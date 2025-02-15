@@ -4,8 +4,8 @@ import { UserEntity } from 'src/users/entities/user.entity';
 import { UserSeeder } from './user.seeder';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UserEntity])], // Registramos la entidad User
+  imports: [TypeOrmModule.forFeature([UserEntity])],
   providers: [UserSeeder],
-  exports: [UserSeeder], // Para que pueda ser usado en otros módulos
+  exports: [UserSeeder],
 })
 export class DatabaseModule {}

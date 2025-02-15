@@ -1,17 +1,18 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { EmployeeEntity } from 'src/employeess/entities/employeess.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
 
 @Entity({ name: 't_users' })
 export class UserEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
-  @Column()
+  @Column({ length: 100 })
   first_name: string;
 
-  @Column()
+  @Column({ length: 100 })
   last_name: string;
 
-  @Column()
+  @Column({ length: 255, unique: true })
   email: string;
 
   @Column()
@@ -19,4 +20,7 @@ export class UserEntity {
 
   @Column({ default: 'employee' })
   role: string;
+
+  @OneToOne(() => EmployeeEntity, (employee) => employee.user)
+  employee: EmployeeEntity;
 }
