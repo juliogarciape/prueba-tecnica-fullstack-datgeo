@@ -27,15 +27,15 @@ git clone https://github.com/juliogarciape/prueba-tecnica-fullstack-datgeo.git
 2) **Instala las dependencias:**
 
 ```bash
-npm install && npm run install       # Instala concurrently y luego descarga las dependencias del backend y frontend
+npm install && npm run install    # Descarga e instala las dependencias del backend y frontend
 ```
 
 3) **Ejecuta la aplicación:**
 
 ```bash
-npm npm dev       # Modo Desarrollo
+npm run dev    # Modo Desarrollo
 ó
-npm run start     # Modo Produccion 
+npm run start  # Modo Produccion 
 ```
 
 > [!IMPORTANT]
