@@ -1,0 +1,17 @@
+{
+  "name": "prueba-tecnica-datgeotech",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Este es un proyecto de prueba técnica para Datgeotech",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix app/frontend\" \"npm run start:dev --prefix app/backend\"",
+    "start": "concurrently \"npm run start --prefix app/frontend\" \"npm run start --prefix app/backend\"",
+    "build": "concurrently \"npm run build --prefix app/frontend\" \"npm run build --prefix app/backend\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
