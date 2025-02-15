@@ -27,19 +27,19 @@ git clone https://github.com/juliogarciape/prueba-tecnica-fullstack-datgeo.git
 2) **Instala las dependencias:**
 
 ```bash
-npm install && npm run install    # Instala las dependencias del proyecto usando concurrently
+npm install && npm run install   # Instala las dependencias del proyecto usando concurrently
 ```
 
 3) **Ejecuta la aplicación:**
 
 ```bash
-npm run dev    # Modo Desarrollo
+npm run dev   # Modo Desarrollo
 ó
-npm run start  # Modo Produccion 
+npm run start # Modo Produccion 
 ```
 
 > [!IMPORTANT]
-> Esta configuración solo se realizó con el fin de probar la aplicación web en pocos comandos y de forma rápida, para un entorno de producción lo mas recomendable es separar los proyectos en diferentes repositorios con una configuracion independiente.
+> Esta configuración solo se realizó con el fin de probar la aplicación web con pocos comandos y de forma rápida, para un entorno de producción lo mas recomendable es separar los proyectos en diferentes repositorios con una configuracion independiente.
 
 ## Notas :memo:
 
