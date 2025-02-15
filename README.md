@@ -18,11 +18,28 @@ El área de Recursos Humanos será responsable de registrar a los empleados en l
 
 ## Instalación :inbox_tray:
 
-**Clona el repositorio:**
+1) **Clona el repositorio:**
 
 ```bash
 git clone https://github.com/juliogarciape/prueba-tecnica-fullstack-datgeo.git
 ```
+
+2) **Instala las dependencias:**
+
+```bash
+npm install && npm run install       # Instala concurrently y luego descarga las dependencias del backend y frontend
+```
+
+3) **Ejecuta la aplicación:**
+
+```bash
+npm npm dev       # Modo Desarrollo
+ó
+npm run start     # Modo Produccion 
+```
+
+> [!IMPORTANT]
+> Esta configuración solo se realizó con el fin de probar la aplicación web en pocos comandos y de forma rápida, para un entorno de producción lo mas recomendable es separar los proyectos en diferentes repositorios con una configuracion independiente.
 
 ## Notas :memo:
 
@@ -32,5 +49,4 @@ git clone https://github.com/juliogarciape/prueba-tecnica-fullstack-datgeo.git
 ## Detalles Técnicos :bulb:
 
 - Se utilizó la capa Free Tier de AWS para la creacion de un Bucket en AWS S3
-- Se utilizó el paquete `concurrently` para ejecutar el backend y el frontend al mismo tiempo con un solo comando: `npm run dev` o `npm run start` en la raiz del proyecto.
-- 
+- Se utilizó el paquete `concurrently` para ejecutar el backend y el frontend al mismo tiempo con un solo comando.
