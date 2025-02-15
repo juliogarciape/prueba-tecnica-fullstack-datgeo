@@ -5,6 +5,7 @@ import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { DocumentsModule } from './documents/documents.module';
+import { DatabaseModule } from 'seed/seeder.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { DocumentsModule } from './documents/documents.module';
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
+    DatabaseModule,
     UsersModule,
     DocumentsModule,
   ],
