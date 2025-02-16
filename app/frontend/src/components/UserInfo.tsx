@@ -1,9 +1,22 @@
 'use client'
 import { Employee } from '@/types/employee.type'
 import { Stack, Box, Container, Button, TextField } from '@mui/material'
+import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 
 interface IProps {
 	data: Employee
+}
+
+const iFileStyle = {
+	clip: 'rect(0 0 0 0)',
+	clipPath: 'inset(50%)',
+	height: 1,
+	overflow: 'hidden',
+	position: 'absolute',
+	bottom: 0,
+	left: 0,
+	whiteSpace: 'nowrap',
+	width: 1,
 }
 
 export default function UserInfo({ data }: IProps) {
@@ -107,48 +120,66 @@ export default function UserInfo({ data }: IProps) {
 					</Stack>
 				</Stack>
 				<Stack spacing={5} justifyContent={'center'} direction={'row'}>
-					<Button
-						component="label"
-						role={undefined}
-						variant="contained"
-						tabIndex={-1}
-					>
-						Upload files
-						<input
-							type="file"
-							onChange={(event) =>
-								console.log(event.target.files)
-							}
-						/>
-					</Button>
-					<Button
-						component="label"
-						role={undefined}
-						variant="contained"
-						tabIndex={-1}
-					>
-						Upload files
-						<input
-							type="file"
-							onChange={(event) =>
-								console.log(event.target.files)
-							}
-						/>
-					</Button>
-					<Button
-						component="label"
-						role={undefined}
-						variant="contained"
-						tabIndex={-1}
-					>
-						Upload files
-						<input
-							type="file"
-							onChange={(event) =>
-								console.log(event.target.files)
-							}
-						/>
-					</Button>
+					<Stack>
+						<Button
+							component="label"
+							role={undefined}
+							variant="contained"
+							tabIndex={-1}
+							startIcon={<CloudUploadIcon />}
+						>
+							Subir Documento de Identidad
+							<Box
+								component={'input'}
+								sx={iFileStyle}
+								type="file"
+								onChange={(event) =>
+									console.log(event.target.files)
+								}
+								multiple
+							/>
+						</Button>
+					</Stack>
+					<Stack>
+						<Button
+							component="label"
+							role={undefined}
+							variant="contained"
+							tabIndex={-1}
+							startIcon={<CloudUploadIcon />}
+						>
+							Upload files
+							<Box
+								component={'input'}
+								sx={iFileStyle}
+								type="file"
+								onChange={(event) =>
+									console.log(event.target.files)
+								}
+								multiple
+							/>
+						</Button>
+					</Stack>
+					<Stack>
+						<Button
+							component="label"
+							role={undefined}
+							variant="contained"
+							tabIndex={-1}
+							startIcon={<CloudUploadIcon />}
+						>
+							Upload files
+							<Box
+								component={'input'}
+								sx={iFileStyle}
+								type="file"
+								onChange={(event) =>
+									console.log(event.target.files)
+								}
+								multiple
+							/>
+						</Button>
+					</Stack>
 				</Stack>
 			</Box>
 		</Container>
