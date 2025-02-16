@@ -1,4 +1,4 @@
-import { EmployeeEntity } from 'src/employeess/entities/employeess.entity';
+import { EmployeeEntity } from 'src/users/entities/employeess.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
 
 @Entity({ name: 't_users' })

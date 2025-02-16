@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { DocumentType } from './document.entity';
-import { EmployeeEntity } from 'src/employeess/entities/employeess.entity';
+import { EmployeeEntity } from 'src/users/entities/employeess.entity';
 
 @Entity('t_employee_documents')
 export class EmployeeDocument {

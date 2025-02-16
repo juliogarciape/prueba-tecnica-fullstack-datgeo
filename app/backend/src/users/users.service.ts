@@ -5,11 +5,14 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { EmployeeEntity } from 'src/users/entities/employeess.entity';
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
+    @InjectRepository(EmployeeEntity)
+    private employeeRepository: Repository<EmployeeEntity>,
   ) {}
 
   findByEmail(email: string) {
@@ -31,18 +34,27 @@ export class UsersService {
       };
     }
 
-    /* const hashedPassword = bcrypt.hashSync(user.password, 10);
+    const hashedPassword = bcrypt.hashSync(user.password, 10);
     const newUser = this.userRepository.create({
       ...user,
       password: hashedPassword,
-    }); */
+    });
 
-    //const employee = this.
+    const result = await this.userRepository.save(newUser);
+
+    const employee = this.employeeRepository.create({
+      job_title: user.job_title,
+      salary: user.salary,
+      identity_document: user.identity_document,
+      user: result,
+    });
+
+    await this.employeeRepository.save(employee);
+
     return {
       error: false,
-      message: 'Usuario creado',
+      message: 'Usuario registrado correctamente',
     };
-    return this.userRepository.save(newUser);
   }
 
   findAll() {
