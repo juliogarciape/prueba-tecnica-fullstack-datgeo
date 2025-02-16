@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { EmployeeEntity } from 'src/employeess/entities/employeess.entity';
 import { UserEntity } from 'src/users/entities/user.entity';
 import { Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class Seeder {
@@ -19,13 +20,13 @@ export class Seeder {
     });
 
     if (!exists) {
-      //const hashedPassword = await bcrypt.hash("admin123", 10); // Encriptar contraseña
+      const hashedPassword = await bcrypt.hash('qwerty123', 10);
 
       const user = this.userRepository.create({
         first_name: 'Cesar',
         last_name: 'Garcia',
         email: 'cesar@datgeo.com',
-        password: 'hashedPassword',
+        password: hashedPassword,
         role: 'admin',
       });
 
