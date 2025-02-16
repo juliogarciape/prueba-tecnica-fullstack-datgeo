@@ -1,13 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { EmployeeEntity } from 'src/employeess/entities/employeess.entity';
 import { UserEntity } from 'src/users/entities/user.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
-export class UserSeeder {
+export class Seeder {
   constructor(
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
+    @InjectRepository(EmployeeEntity)
+    private employeeRepository: Repository<EmployeeEntity>,
   ) {}
 
   async run(): Promise<void> {
@@ -26,10 +29,19 @@ export class UserSeeder {
         role: 'admin',
       });
 
-      await this.userRepository.save(user);
-      console.log('✅ El usuario administrador fue creado.');
+      const result = await this.userRepository.save(user);
+
+      const employee = this.employeeRepository.create({
+        user: result,
+        job_title: 'Full Stack Developer',
+        salary: 4500,
+      });
+
+      await this.employeeRepository.save(employee);
+
+      console.log('🌱 El Seed fue ejecutado correctamente.');
     } else {
-      console.log('❌ El usuario administrador ya existe.');
+      console.log('❌ El Seed ya fue ejecutado.');
     }
   }
 }

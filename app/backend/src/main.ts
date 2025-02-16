@@ -1,11 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { UserSeeder } from 'seed/user.seeder';
+import { Seeder } from 'seed/seeder';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const userSeeder = app.get(UserSeeder);
-  await userSeeder.run();
+  const seeder = app.get(Seeder);
+  await seeder.run();
   await app.listen(process.env.PORT ?? 3001);
 }
 

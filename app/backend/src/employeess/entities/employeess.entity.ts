@@ -9,7 +9,7 @@ import {
 
 @Entity('t_employees')
 export class EmployeeEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id: string;
 
   @OneToOne(() => UserEntity, (user) => user.employee, { onDelete: 'CASCADE' })
