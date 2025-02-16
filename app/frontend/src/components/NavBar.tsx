@@ -3,14 +3,14 @@ import { Box, Typography, Button } from '@mui/material'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import LogoutIcon from '@mui/icons-material/Logout'
-
+import Cookies from 'js-cookie'
 interface IProps {
 	title: string
 }
 
 export default function NavBar({ title }: IProps) {
 	const handleLogout = () => {
-		localStorage.removeItem('token')
+		Cookies.remove('access_token')
 		window.location.href = '/'
 	}
 

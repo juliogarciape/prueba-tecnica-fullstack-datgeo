@@ -3,8 +3,13 @@ import { Stack, Button, Box, Container, Typography } from '@mui/material'
 import { FormContainer, TextFieldElement } from 'react-hook-form-mui'
 import LoginIcon from '@mui/icons-material/Login'
 import { loginFormDefaults } from '@/config/defaultValues'
+import { useRouter } from 'next/navigation'
+import { API_URL } from '@/config/constants'
+import Cookies from 'js-cookie'
 
 export default function LoginForm() {
+	const router = useRouter()
+
 	return (
 		<Box
 			sx={{
@@ -23,7 +28,23 @@ export default function LoginForm() {
 				<Box p={3} textAlign="center">
 					<FormContainer
 						defaultValues={loginFormDefaults}
-						onSuccess={(data) => console.log(data)}
+						onSuccess={async (data) => {
+							const query = await fetch(API_URL + '/auth/login', {
+								method: 'POST',
+								body: JSON.stringify(data),
+								headers: {
+									'Content-Type': 'application/json',
+								},
+							})
+							const res = await query.json()
+
+							if (res.error) {
+								alert(res.message)
+							} else {
+								Cookies.set('access_token', res.access_token)
+								router.push('auth')
+							}
+						}}
 					>
 						<Stack spacing={3}>
 							<Typography
