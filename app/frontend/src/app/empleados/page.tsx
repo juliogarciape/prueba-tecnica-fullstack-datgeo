@@ -1,9 +1,9 @@
 import NavBar from '@/components/NavBar'
 import { API_URL } from '@/config/constants'
 import TableEployees from '@/components/TableEmployees'
-import PersonAddIcon from '@mui/icons-material/PersonAdd'
-import { Box, Button } from '@mui/material'
+import { Box } from '@mui/material'
 import { cookies } from 'next/headers'
+import NewEmployee from '@/components/NewEmployee'
 
 export default async function Empleados() {
 	const cookieStore = await cookies()
@@ -23,14 +23,7 @@ export default async function Empleados() {
 		<Box>
 			<NavBar title="Administracion de Empleados" />
 			<Box p={2} maxWidth={'lg'} margin={'auto'}>
-				<Button
-					startIcon={<PersonAddIcon />}
-					variant="outlined"
-					size="large"
-					sx={{ marginBottom: 5 }}
-				>
-					Alta de Empleado
-				</Button>
+				<NewEmployee />
 				<TableEployees data={data} />
 			</Box>
 		</Box>

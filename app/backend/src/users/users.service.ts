@@ -43,6 +43,7 @@ export class UsersService {
   findAll() {
     return this.userRepository.find({
       relations: ['employee'],
+      where: { role: 'employee' },
     });
   }
 

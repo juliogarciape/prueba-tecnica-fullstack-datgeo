@@ -35,6 +35,7 @@ export class Seeder {
       const employee = this.employeeRepository.create({
         user: result,
         job_title: 'Full Stack Developer',
+        identity_document: '123456789',
         salary: 4500,
       });
 
