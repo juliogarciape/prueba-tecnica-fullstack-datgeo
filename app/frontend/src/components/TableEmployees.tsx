@@ -23,7 +23,6 @@ export default function TableEployees({ data }: IProps) {
 				<Table aria-label="simple table">
 					<TableHead>
 						<TableRow>
-							<TableCell align="center">ID</TableCell>
 							<TableCell align="center">Nombres</TableCell>
 							<TableCell align="center">Apellidos</TableCell>
 							<TableCell align="center">Email</TableCell>
@@ -42,9 +41,6 @@ export default function TableEployees({ data }: IProps) {
 									},
 								}}
 							>
-								<TableCell align="center">
-									{employee.id}
-								</TableCell>
 								<TableCell align="center">
 									{employee.first_name}
 								</TableCell>
