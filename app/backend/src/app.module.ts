@@ -7,6 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 import { DocumentsModule } from './documents/documents.module';
 import { DatabaseModule } from 'seed/seeder.module';
 import { EmployeessModule } from './employeess/employeess.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { EmployeessModule } from './employeess/employeess.module';
     UsersModule,
     DocumentsModule,
     EmployeessModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
