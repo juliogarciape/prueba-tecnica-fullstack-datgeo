@@ -20,30 +20,27 @@ export async function middleware(req: NextRequest) {
 				},
 			})
 
-			if (response.ok) {
-				const { role } = await response.json()
+			const tokenDecoded = await response.json()
+			const { role } = tokenDecoded
 
-				if (url.pathname === '/auth') {
-					url.pathname =
-						role === 'admin' ? '/empleados' : '/mi-perfil'
-					return NextResponse.redirect(url)
-				}
+			if (tokenDecoded.statusCode === 401 && url.pathname !== '/') {
+				url.pathname = '/'
+				return NextResponse.redirect(url)
+			}
 
-				if (url.pathname === '/') {
-					url.pathname =
-						role === 'admin' ? '/empleados' : '/mi-perfil'
-					return NextResponse.redirect(url)
-				}
+			if (url.pathname === '/auth') {
+				url.pathname = role === 'admin' ? '/empleados' : '/mi-perfil'
+				return NextResponse.redirect(url)
+			}
 
-				if (role !== 'admin' && url.pathname === '/empleados') {
-					url.pathname = '/mi-perfil'
-					return NextResponse.redirect(url)
-				}
+			if (role !== 'admin' && url.pathname === '/empleados') {
+				url.pathname = '/mi-perfil'
+				return NextResponse.redirect(url)
+			}
 
-				if (role !== 'employee' && url.pathname === '/mi-perfil') {
-					url.pathname = '/empleados'
-					return NextResponse.redirect(url)
-				}
+			if (role !== 'employee' && url.pathname === '/mi-perfil') {
+				url.pathname = '/empleados'
+				return NextResponse.redirect(url)
 			}
 		} catch (error) {
 			console.error('Error validating token:', error)

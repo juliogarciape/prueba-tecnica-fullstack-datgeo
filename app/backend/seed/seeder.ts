@@ -41,6 +41,8 @@ export class Seeder {
 
       await this.employeeRepository.save(employee);
 
+      //const document = this.
+
       console.log('🌱 El Seed fue ejecutado correctamente.');
     } else {
       console.log('❌ El Seed ya fue ejecutado.');

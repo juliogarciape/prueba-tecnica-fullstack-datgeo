@@ -19,8 +19,18 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @UseGuards(JwtAuthGuard)
-  @Post()
-  createUser(@Body() user: CreateUserDto) {
+  @Post('create')
+  createUser(
+    @Body() user: CreateUserDto,
+    @Req() req: Request & { user?: { role: string } },
+  ) {
+    if (req.user?.role !== 'admin') {
+      return {
+        error: true,
+        message: 'No tienes permisos para realizar esta acción',
+      };
+    }
+
     return this.usersService.createUser(user);
   }
 

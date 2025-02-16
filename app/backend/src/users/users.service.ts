@@ -31,12 +31,17 @@ export class UsersService {
       };
     }
 
-    const hashedPassword = bcrypt.hashSync(user.password, 10);
+    /* const hashedPassword = bcrypt.hashSync(user.password, 10);
     const newUser = this.userRepository.create({
       ...user,
       password: hashedPassword,
-    });
+    }); */
 
+    //const employee = this.
+    return {
+      error: false,
+      message: 'Usuario creado',
+    };
     return this.userRepository.save(newUser);
   }
 

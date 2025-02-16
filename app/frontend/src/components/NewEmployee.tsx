@@ -2,15 +2,15 @@
 import { submitForm } from '@/actions/newEmployee'
 import PersonAddIcon from '@mui/icons-material/PersonAdd'
 import { Box, Button, Modal, Stack, TextField, Typography } from '@mui/material'
-import { useState } from 'react'
-import { useFormState, useFormStatus } from 'react-dom'
+import { useActionState, useState } from 'react'
+import { useFormStatus } from 'react-dom'
 
 export default function NewEmployee() {
 	const [open, setOpen] = useState(false)
 	const handleOpen = () => setOpen(true)
 	const handleClose = () => setOpen(false)
 	const { pending } = useFormStatus()
-	const [state, formAction] = useFormState(submitForm, { error: null })
+	const [state, formAction] = useActionState(submitForm, {})
 
 	return (
 		<>
@@ -40,7 +40,6 @@ export default function NewEmployee() {
 						boxShadow: 24,
 						p: 4,
 					}}
-					method="post"
 					component="form"
 					action={formAction}
 				>
@@ -95,7 +94,7 @@ export default function NewEmployee() {
 							/>
 							<TextField
 								label="DNI"
-								name="dni"
+								name="identity_document"
 								margin={'normal'}
 								required
 								fullWidth

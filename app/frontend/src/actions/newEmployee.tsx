@@ -4,23 +4,23 @@ import { API_URL } from '@/config/constants'
 import { cookies } from 'next/headers'
 
 export async function submitForm(prevState: any, formData: FormData) {
-	const firstName = formData.get('first_name') as string
-	const lastName = formData.get('last_name') as string
+	const first_name = formData.get('first_name') as string
+	const last_name = formData.get('last_name') as string
 	const email = formData.get('email') as string
 	const password = formData.get('password') as string
-	const jobTitle = formData.get('job_title') as string
-	const dni = formData.get('dni') as string
+	const job_title = formData.get('job_title') as string
+	const identity_document = formData.get('identity_document') as string
 	const salary = formData.get('salary') as string
 	const cookieStore = await cookies()
-	const token = cookieStore.get('access_token')
+	const token = cookieStore.get('access_token')?.value
 
 	if (
-		!firstName ||
+		!first_name ||
 		!email ||
 		!password ||
-		!lastName ||
-		!jobTitle ||
-		!dni ||
+		!last_name ||
+		!job_title ||
+		!identity_document ||
 		!salary
 	) {
 		return { error: 'Todos los campos son obligatorios.' }
@@ -34,12 +34,12 @@ export async function submitForm(prevState: any, formData: FormData) {
 				Authorization: `Bearer ${token}`,
 			},
 			body: JSON.stringify({
-				firstName,
-				lastName,
+				first_name,
+				last_name,
 				email,
 				password,
-				jobTitle,
-				dni,
+				job_title,
+				identity_document,
 				salary,
 			}),
 		})
@@ -56,7 +56,7 @@ export async function submitForm(prevState: any, formData: FormData) {
 		}
 
 		return {
-			success: `Formulario enviado: Empleado ${firstName} ${lastName} fue dado de alta.`,
+			success: `Formulario enviado: Empleado ${first_name} ${last_name} fue dado de alta.`,
 		}
 	} catch (error) {
 		return { error: 'Error al conectar con la API.' }
