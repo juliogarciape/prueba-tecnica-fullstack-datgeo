@@ -16,6 +16,11 @@ El área de Recursos Humanos será responsable de registrar a los empleados en l
 - **Frontend**: React, Next.js, Material UI
 - **Servicios**: AWS (S3)
 
+# Requisitos :pencil:
+
+- Crear una base de datos PostgreSQL con el nombre de "recursoshumanos"
+- Crear un archivo .env en la carpeta `backend` para establecer las variables de entorno que aparecen en el archivo [.env.example](/app/backend/.env.example)
+
 ## Instalación :inbox_tray:
 
 1) **Clona el repositorio:**
@@ -43,6 +48,7 @@ npm run start # Modo Produccion
 
 ## Notas :memo:
 
+- El json de los permisos y la configuracion de CORS para la politica del bucket de S3 se encuentra en la carpeta [media/aws/](media/aws/) 
 - En el directorio `app/backend` se creó un [README.md](app/backend/README.md) más detallado sobre el backend
 - En el directorio `app/frontend` se creó un [README.md](app/frontend/README.md) más detallado sobre el frontend
 
@@ -50,3 +56,13 @@ npm run start # Modo Produccion
 
 - Se utilizó la capa Free Tier de AWS para la creacion de un Bucket en AWS S3
 - Se utilizó el paquete `concurrently` para ejecutar el backend y el frontend al mismo tiempo con un solo comando.
+
+## Screenshots :camera:
+
+![Login](/media/screenshots/login.png)
+
+![Mi Perfil](/media/screenshots/mi-perfil.png)
+
+![New Employee](/media/screenshots/register.png)
+
+![Employees](/media/screenshots/employees.png)
