@@ -1,14 +1,14 @@
 import { Controller, Get, Post, Body, UseGuards, Req } from '@nestjs/common';
 import { DocumentsService } from './documents.service';
-import { CreateDocumentDto } from './dto/create-document.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 
 @Controller('documents')
 export class DocumentsController {
   constructor(private readonly documentsService: DocumentsService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Post()
-  create(@Body() createDocumentDto: CreateDocumentDto) {
+  create(@Body() createDocumentDto) {
     return this.documentsService.create(createDocumentDto);
   }
 
