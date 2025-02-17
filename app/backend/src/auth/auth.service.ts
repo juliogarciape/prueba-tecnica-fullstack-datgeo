@@ -25,7 +25,6 @@ export class AuthService {
       const payload = { userId: user.id, email: user.email, role: user.role };
 
       return {
-        url: user.role === 'admin' ? '/admin' : '/mi-perfil',
         access_token: this.jwtService.sign(payload),
       };
     } catch (error) {

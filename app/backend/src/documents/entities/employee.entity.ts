@@ -16,7 +16,7 @@ export class EmployeeDocument {
   @ManyToOne(() => EmployeeEntity, (employee) => employee.employeeDocuments)
   employee: EmployeeEntity;
 
-  @Column()
+  @Column({ nullable: true })
   file_path: string;
 
   @Column({ type: 'boolean', default: false })

@@ -1,6 +1,7 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards, Req } from '@nestjs/common';
 import { DocumentsService } from './documents.service';
 import { CreateDocumentDto } from './dto/create-document.dto';
+import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 
 @Controller('documents')
 export class DocumentsController {
@@ -11,8 +12,10 @@ export class DocumentsController {
     return this.documentsService.create(createDocumentDto);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.documentsService.findOne(+id);
+  @UseGuards(JwtAuthGuard)
+  @Get('me')
+  findMyDocs(@Req() req: Request & { user?: { userId: number } }) {
+    const id = req.user?.userId;
+    return this.documentsService.findMyDocs(id as number);
   }
 }
