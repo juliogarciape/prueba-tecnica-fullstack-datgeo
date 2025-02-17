@@ -2,9 +2,13 @@
 import { Employee } from '@/types/employee.type'
 import { Stack, Box, Container, Button, TextField } from '@mui/material'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
+import { useEffect, useState } from 'react'
+import { BUCKET_URL } from '@/config/constants'
+import PDFViewer from './PdfViewer'
 
 interface IProps {
 	data: Employee
+	documents: any
 }
 
 const iFileStyle = {
@@ -19,7 +23,38 @@ const iFileStyle = {
 	width: 1,
 }
 
-export default function UserInfo({ data }: IProps) {
+export default function UserInfo({ data, documents }: IProps) {
+	const [docs, setDocuments] = useState({
+		identityDocument: '',
+		driverLicense: '',
+		curriculumVitae: '',
+	})
+
+	useEffect(() => {
+		documents.map((doc) => {
+			if (doc.documentType.name === 'Licencia de Conducir') {
+				setDocuments((prev) => ({
+					...prev,
+					driverLicense: BUCKET_URL + doc.file_path,
+				}))
+			}
+
+			if (doc.documentType.name === 'Curriculum Vitae') {
+				setDocuments((prev) => ({
+					...prev,
+					curriculumVitae: BUCKET_URL + doc.file_path,
+				}))
+			}
+
+			if (doc.documentType.name === 'Documento de Identidad') {
+				setDocuments((prev) => ({
+					...prev,
+					identityDocument: BUCKET_URL + doc.file_path,
+				}))
+			}
+		})
+	}, [documents])
+
 	return (
 		<Container maxWidth="lg">
 			<Box p={3}>
@@ -119,66 +154,81 @@ export default function UserInfo({ data }: IProps) {
 						/>
 					</Stack>
 				</Stack>
-				<Stack spacing={5} justifyContent={'center'} direction={'row'}>
-					<Stack>
-						<Button
-							component="label"
-							role={undefined}
-							variant="contained"
-							tabIndex={-1}
-							startIcon={<CloudUploadIcon />}
-						>
-							Subir Documento de Identidad
-							<Box
-								component={'input'}
-								sx={iFileStyle}
-								type="file"
-								onChange={(event) =>
-									console.log(event.target.files)
-								}
-								multiple
-							/>
-						</Button>
+				<Stack
+					marginTop={5}
+					marginBottom={5}
+					spacing={5}
+					justifyContent={'center'}
+					direction={'row'}
+				>
+					<Stack flex={1}>
+						{docs.identityDocument !== '' ? (
+							<PDFViewer fileUrl={docs.identityDocument} />
+						) : (
+							<Button
+								component="label"
+								role={undefined}
+								variant="contained"
+								tabIndex={-1}
+								startIcon={<CloudUploadIcon />}
+							>
+								Documento de Identidad (.pdf)
+								<Box
+									component={'input'}
+									accept="application/pdf"
+									sx={iFileStyle}
+									type="file"
+								/>
+							</Button>
+						)}
 					</Stack>
-					<Stack>
-						<Button
-							component="label"
-							role={undefined}
-							variant="contained"
-							tabIndex={-1}
-							startIcon={<CloudUploadIcon />}
-						>
-							Upload files
-							<Box
-								component={'input'}
-								sx={iFileStyle}
-								type="file"
-								onChange={(event) =>
-									console.log(event.target.files)
-								}
-								multiple
-							/>
-						</Button>
+					<Stack flex={1}>
+						{docs.driverLicense !== '' ? (
+							<PDFViewer fileUrl={docs.driverLicense} />
+						) : (
+							<Button
+								component="label"
+								role={undefined}
+								variant="contained"
+								tabIndex={-1}
+								startIcon={<CloudUploadIcon />}
+							>
+								Licencia de Conducir (.pdf)
+								<Box
+									component={'input'}
+									accept="application/pdf"
+									sx={iFileStyle}
+									type="file"
+									onChange={(event) =>
+										console.log(event.target.files)
+									}
+								/>
+							</Button>
+						)}
 					</Stack>
-					<Stack>
-						<Button
-							component="label"
-							role={undefined}
-							variant="contained"
-							tabIndex={-1}
-							startIcon={<CloudUploadIcon />}
-						>
-							Upload files
-							<Box
-								component={'input'}
-								sx={iFileStyle}
-								type="file"
-								onChange={(event) =>
-									console.log(event.target.files)
-								}
-								multiple
-							/>
-						</Button>
+					<Stack flex={1}>
+						{docs.curriculumVitae !== '' ? (
+							<PDFViewer fileUrl={docs.curriculumVitae} />
+						) : (
+							<Button
+								component="label"
+								role={undefined}
+								variant="contained"
+								tabIndex={-1}
+								startIcon={<CloudUploadIcon />}
+							>
+								Licencia de Conducir (.pdf)
+								<Box
+									component={'input'}
+									accept="application/pdf"
+									sx={iFileStyle}
+									type="file"
+									onChange={(event) =>
+										console.log(event.target.files)
+									}
+								/>
+							</Button>
+						)}
 					</Stack>
 				</Stack>
 			</Box>

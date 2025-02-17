@@ -14,14 +14,23 @@ export default async function MiPerfil() {
 	})
 	const data = await res.json()
 
-	if (data.statusCode === 401) {
+	const resDocuments = await fetch(API_URL + '/documents/me', {
+		method: 'GET',
+		headers: {
+			Authorization: `Bearer ${cookieStore.get('access_token')?.value}`,
+		},
+	})
+
+	const documents = await resDocuments.json()
+
+	if (data.statusCode === 401 || documents.statusCode === 401) {
 		return <h1>401 Unauthorized</h1>
 	}
 
 	return (
 		<Box>
 			<NavBar title="Informacion de Perfil" />
-			<UserInfo data={data} />
+			<UserInfo data={data} documents={documents} />
 		</Box>
 	)
 }
