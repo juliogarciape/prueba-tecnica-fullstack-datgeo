@@ -16,9 +16,9 @@ El área de Recursos Humanos será responsable de registrar a los empleados en l
 - **Frontend**: React, Next.js, Material UI
 - **Servicios**: AWS (S3)
 
-# Requisitos :pencil:
+## Requisitos :pencil:
 
-- Crear una base de datos PostgreSQL con el nombre de "recursoshumanos"
+- Crear una base de datos PostgreSQL con el nombre de `recursoshumanos`
 - Crear un archivo .env en la carpeta `backend` para establecer las variables de entorno que aparecen en el archivo [.env.example](/app/backend/.env.example)
 
 ## Instalación :inbox_tray:

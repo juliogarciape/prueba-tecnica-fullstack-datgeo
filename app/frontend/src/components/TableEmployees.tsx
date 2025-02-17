@@ -11,6 +11,8 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import { Employee } from '@/types/employee.type'
 import { Button } from '@mui/material'
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
+import ArrowDropDownCircleOutlinedIcon from '@mui/icons-material/ArrowDropDownCircleOutlined'
 
 interface IProps {
 	data: Employee[]
@@ -56,11 +58,28 @@ export default function TableEployees({ data }: IProps) {
 								<TableCell align="center">
 									S/ {employee.employee?.salary}
 								</TableCell>
-								<TableCell align="center">
-									<Button variant="contained" color="warning">
+								<TableCell
+									align="center"
+									sx={{
+										display: 'flex',
+										gap: 1,
+										justifyContent: 'center',
+									}}
+								>
+									<Button
+										startIcon={<EditOutlinedIcon />}
+										variant="contained"
+										color="warning"
+									>
 										Editar Empleado
 									</Button>
-									<Button variant="contained" color="error">
+									<Button
+										startIcon={
+											<ArrowDropDownCircleOutlinedIcon />
+										}
+										variant="contained"
+										color="error"
+									>
 										Baja de Empleado
 									</Button>
 								</TableCell>
@@ -70,7 +89,7 @@ export default function TableEployees({ data }: IProps) {
 				</Table>
 			</TableContainer>
 			<TablePagination
-				rowsPerPageOptions={[3, 5]}
+				rowsPerPageOptions={[50]}
 				component="div"
 				count={data.length}
 				page={0}
