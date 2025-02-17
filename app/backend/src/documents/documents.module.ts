@@ -5,6 +5,7 @@ import { AuthModule } from 'src/auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DocumentType } from './entities/document.entity';
 import { EmployeeDocument } from './entities/employee.entity';
+import { S3Service } from 'src/services/s3.service';
 
 @Module({
   imports: [
@@ -12,7 +13,7 @@ import { EmployeeDocument } from './entities/employee.entity';
     AuthModule,
   ],
   controllers: [DocumentsController],
-  providers: [DocumentsService],
+  providers: [DocumentsService, S3Service],
   exports: [DocumentsService],
 })
 export class DocumentsModule {}

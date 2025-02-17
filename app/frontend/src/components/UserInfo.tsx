@@ -3,8 +3,9 @@ import { Employee } from '@/types/employee.type'
 import { Stack, Box, Container, Button, TextField } from '@mui/material'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 import { useEffect, useState } from 'react'
-import { BUCKET_URL } from '@/config/constants'
+import { API_URL, BUCKET_URL } from '@/config/constants'
 import PDFViewer from './PdfViewer'
+import Cookies from 'js-cookie'
 
 interface IProps {
 	data: Employee
@@ -24,6 +25,7 @@ const iFileStyle = {
 }
 
 export default function UserInfo({ data, documents }: IProps) {
+	const cookie = Cookies.get('access_token')
 	const [docs, setDocuments] = useState({
 		identityDocument: '',
 		driverLicense: '',
@@ -178,6 +180,37 @@ export default function UserInfo({ data, documents }: IProps) {
 									accept="application/pdf"
 									sx={iFileStyle}
 									type="file"
+									onChange={async (event) => {
+										const file = event.target.files[0]
+
+										if (file) {
+											const formData = new FormData()
+											formData.append('file', file)
+											formData.append('type', 1)
+
+											try {
+												const response = await fetch(
+													API_URL +
+														'/documents/upload',
+													{
+														method: 'POST',
+														body: formData,
+														headers: {
+															Authorization: `Bearer ${cookie}`,
+														},
+													}
+												)
+
+												const data =
+													await response.json()
+												alert(data.message)
+											} catch (error) {
+												alert(
+													'Error al subir el archivo .pdf'
+												)
+											}
+										}
+									}}
 								/>
 							</Button>
 						)}
@@ -199,9 +232,37 @@ export default function UserInfo({ data, documents }: IProps) {
 									accept="application/pdf"
 									sx={iFileStyle}
 									type="file"
-									onChange={(event) =>
-										console.log(event.target.files)
-									}
+									onChange={async (event) => {
+										const file = event.target.files[0]
+
+										if (file) {
+											const formData = new FormData()
+											formData.append('file', file)
+											formData.append('type', 2)
+
+											try {
+												const response = await fetch(
+													API_URL +
+														'/documents/upload',
+													{
+														method: 'POST',
+														body: formData,
+														headers: {
+															Authorization: `Bearer ${cookie}`,
+														},
+													}
+												)
+
+												const data =
+													await response.json()
+												alert(data.message)
+											} catch (error) {
+												alert(
+													'Error al subir el archivo .pdf'
+												)
+											}
+										}
+									}}
 								/>
 							</Button>
 						)}
@@ -223,9 +284,37 @@ export default function UserInfo({ data, documents }: IProps) {
 									accept="application/pdf"
 									sx={iFileStyle}
 									type="file"
-									onChange={(event) =>
-										console.log(event.target.files)
-									}
+									onChange={async (event) => {
+										const file = event.target.files[0]
+
+										if (file) {
+											const formData = new FormData()
+											formData.append('file', file)
+											formData.append('type', 3)
+
+											try {
+												const response = await fetch(
+													API_URL +
+														'/documents/upload',
+													{
+														method: 'POST',
+														body: formData,
+														headers: {
+															Authorization: `Bearer ${cookie}`,
+														},
+													}
+												)
+
+												const data =
+													await response.json()
+												alert(data.message)
+											} catch (error) {
+												alert(
+													'Error al subir el archivo .pdf'
+												)
+											}
+										}
+									}}
 								/>
 							</Button>
 						)}

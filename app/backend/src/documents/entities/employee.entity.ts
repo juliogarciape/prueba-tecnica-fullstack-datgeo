@@ -18,7 +18,4 @@ export class EmployeeDocument {
 
   @Column({ nullable: true })
   file_path: string;
-
-  @Column({ type: 'boolean', default: false })
-  is_active: string;
 }

@@ -13,8 +13,26 @@ export class DocumentsService {
     private employeeDocumentRepository: Repository<EmployeeDocument>,
   ) {}
 
-  create(createDocumentDto) {
-    return 'This action adds a new document';
+  async create(id: number, type: number, url: string) {
+    try {
+      const document = this.employeeDocumentRepository.create({
+        employee: { id: id },
+        documentType: { id: type },
+        file_path: url,
+      });
+
+      await this.employeeDocumentRepository.save(document);
+
+      return {
+        message: 'Documento subido exitosamente',
+        error: false,
+      };
+    } catch (error) {
+      return {
+        message: 'Error al subir el documento',
+        error: true,
+      };
+    }
   }
 
   findMyDocs(id: number) {
